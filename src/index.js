@@ -3,22 +3,22 @@ import Counting from './counting.js';
 import Invoker from './invoker.js';
 import './styles.css';
 import './theme-mode.js';
-import { values, valuesSigns } from './variables.js';
+import { values, valuesNumbers, valuesSigns } from './variables.js';
 
 let currentSign = null;
 let previousNumber = '';
 let currentNumber = '';
 
-const btnsField = document.querySelector('#buttons');
-const disWindow = document.querySelector('.display');
+const wrapper = document.querySelector('.wrapper');
+const displayWindow = document.querySelector('.display');
 const undoBtn = document.querySelector('.undo-btn');
+const invoker = new Invoker();
 
-document.addEventListener('click', (event) => {
+wrapper.addEventListener('click', (event) => {
 
     const key = Object.keys(values).find(k => values[k] === event.target.textContent);
 
     const counter = new Counting();
-    const invoker = new Invoker();
     const calculator = new Calculator(
         counter,
         invoker,
@@ -27,24 +27,31 @@ document.addEventListener('click', (event) => {
         currentSign,
     )
    
-    if (valuesSigns.includes(key)) {
+    if (valuesSigns.includes(key) || key === 'equal') {
 
-        previousNumber = currentNumber;
-        currentNumber = '';
-        currentSign = key;
+        if (key !== 'equal') {
+            currentSign = key;
+            previousNumber = currentNumber;
+            currentNumber = '';
+        } else {
+            currentNumber = displayWindow.textContent;
+            currentSign = null;
+        }
+        
         calculator.calculate();
-
+        invoker.useStorage(displayWindow.textContent);
+        
         if (previousNumber !== '') {
-            previousNumber = disWindow.textContent;
+            previousNumber = displayWindow.textContent;
         }
 
     } else if (key === 'percent') {
         currentNumber = currentNumber / 100;
-        disWindow.textContent = currentNumber;
+        displayWindow.textContent = currentNumber;
     
     } else if (key === 'change') {
         currentNumber = currentNumber * -1;
-        disWindow.textContent = currentNumber;
+        displayWindow.textContent = currentNumber;
 
     } else if (key === 'allClear') {
         calculator.clear();
@@ -52,15 +59,15 @@ document.addEventListener('click', (event) => {
         previousNumber = '';
         currentNumber = '';
 
-    } else if (event.target.classList.contains('undo-btn')) {
-        calculator.backToPrevious();
+    } else if (event.target.textContent.includes('Undo')) {
+        displayWindow.textContent = invoker.undo();
 
     } else if (key === 'dot' && currentNumber.includes('.') || key === 'dot' && currentNumber === '') {
         return;
 
-    } else {
+    } else if (valuesNumbers.includes(key) || key === 'dot' && currentNumber !== '') {
         currentNumber += values[key];
-        disWindow.textContent = currentNumber;
+        displayWindow.textContent = currentNumber;
     }
        
 });

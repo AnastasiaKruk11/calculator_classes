@@ -23,15 +23,7 @@ export default class Counting {
         return this.currentResult;
     }
 
-    percent(num1) {
-        return num1 / 100;
-    }
-
     calculate(result) {
         this.overallResult += result;
-    }
-
-    backspace(result) {
-        this.overallResult -= result;
     }
 }

@@ -12,12 +12,12 @@ export default class Invoker {
     }
 
     undo() {
-        const undoneValue = this.history.pop();
+        const command = this.history.pop();
 
-        if(undoneValue) {
+        if(command && this.history.length > 0) {
             return this.history[this.history.length - 1];
         } else {
-            return 'Nothing to undo';
+            return 'no results';
         }
     }
 }

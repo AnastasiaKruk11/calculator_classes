@@ -27,3 +27,16 @@ export const valuesSigns = [
     'minus',
 ];
 
+export const valuesNumbers = [
+  'zero',
+  'one',
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+];
+

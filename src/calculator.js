@@ -32,7 +32,7 @@ export default class Calculator {
         let previousNum = this.firstNum;
 
 
-        if (!previousNum) return;
+        if (!previousNum || !this.sign) return;
 
         if (currentNum && previousNum) {
             switch(this.sign) {
