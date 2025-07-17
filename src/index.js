@@ -11,7 +11,6 @@ let currentNumber = '';
 
 const wrapper = document.querySelector('.wrapper');
 const displayWindow = document.querySelector('.display');
-const undoBtn = document.querySelector('.undo-btn');
 const invoker = new Invoker();
 
 wrapper.addEventListener('click', (event) => {
@@ -69,5 +68,5 @@ wrapper.addEventListener('click', (event) => {
         currentNumber += value;
         displayWindow.textContent = currentNumber;
     }
-       
+
 });
