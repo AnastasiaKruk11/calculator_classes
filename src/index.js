@@ -61,7 +61,7 @@ wrapper.addEventListener('click', (event) => {
     } else if (event.target.textContent.includes('Undo')) {
         displayWindow.textContent = invoker.undo();
 
-    } else if (value === values.dot && currentNumber.includes('.') || value === values.dot && currentNumber === '') {
+    } else if (value === values.dot && currentNumber.includes(values.dot) || value === values.dot && currentNumber === '') {
         return;
 
     } else if (valuesNumbers.includes(value) || value === values.dot && currentNumber !== '') {

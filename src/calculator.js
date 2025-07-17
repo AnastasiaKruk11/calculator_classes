@@ -5,7 +5,7 @@ import {
     DivideCommand,
 } from './classes.js';
 import Invoker from './invoker.js';
-import Variables, { values, valuesSigns } from './variables.js';
+import { values } from './variables.js';
 
 const display = document.querySelector('.display');
 const invoker = new Invoker();
