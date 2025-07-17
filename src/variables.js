@@ -21,22 +21,22 @@ export const values = {
 };
 
 export const valuesSigns = [
-    'divide',
-    'multiply',
-    'plus',
-    'minus',
+    values.divide,
+    values.multiply,
+    values.plus,
+    values.minus,
 ];
 
 export const valuesNumbers = [
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six',
-  'seven',
-  'eight',
-  'nine',
+  values.zero,
+  values.one,
+  values.two,
+  values.three,
+  values.four,
+  values.five,
+  values.six,
+  values.seven,
+  values.eight,
+  values.nine,
 ];
 

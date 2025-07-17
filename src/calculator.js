@@ -5,6 +5,7 @@ import {
     DivideCommand,
 } from './classes.js';
 import Invoker from './invoker.js';
+import Variables, { values, valuesSigns } from './variables.js';
 
 const display = document.querySelector('.display');
 const invoker = new Invoker();
@@ -36,16 +37,16 @@ export default class Calculator {
 
         if (currentNum && previousNum) {
             switch(this.sign) {
-                case 'plus':
+                case values.plus:
                     result = new PlusCommand(previousNum, currentNum, this.counter);
                     break;
-                case 'minus': 
+                case values.minus: 
                     result = new MinusCommand(previousNum, currentNum, this.counter);
                     break;
-                case 'multiply':
+                case values.multiply:
                     result = new MultiplyCommand(previousNum, currentNum, this.counter);
                     break;
-                case 'divide':
+                case values.divide:
                     result = new DivideCommand(previousNum, currentNum, this.counter);
                     break;
             }

@@ -16,7 +16,7 @@ const invoker = new Invoker();
 
 wrapper.addEventListener('click', (event) => {
 
-    const key = Object.keys(values).find(k => values[k] === event.target.textContent);
+    const value = event.target.textContent;
 
     const counter = new Counting();
     const calculator = new Calculator(
@@ -27,10 +27,10 @@ wrapper.addEventListener('click', (event) => {
         currentSign,
     )
    
-    if (valuesSigns.includes(key) || key === 'equal') {
+    if (valuesSigns.includes(value) || value === values.equal) {
 
-        if (key !== 'equal') {
-            currentSign = key;
+        if (value !== values.equal) {
+            currentSign = value;
             previousNumber = currentNumber;
             currentNumber = '';
         } else {
@@ -45,15 +45,15 @@ wrapper.addEventListener('click', (event) => {
             previousNumber = displayWindow.textContent;
         }
 
-    } else if (key === 'percent') {
+    } else if (value === values.percent) {
         currentNumber = currentNumber / 100;
         displayWindow.textContent = currentNumber;
     
-    } else if (key === 'change') {
+    } else if (value === values.change) {
         currentNumber = currentNumber * -1;
         displayWindow.textContent = currentNumber;
 
-    } else if (key === 'allClear') {
+    } else if (value === values.allClear) {
         calculator.clear();
         currentSign = null;
         previousNumber = '';
@@ -62,11 +62,11 @@ wrapper.addEventListener('click', (event) => {
     } else if (event.target.textContent.includes('Undo')) {
         displayWindow.textContent = invoker.undo();
 
-    } else if (key === 'dot' && currentNumber.includes('.') || key === 'dot' && currentNumber === '') {
+    } else if (value === values.dot && currentNumber.includes('.') || value === values.dot && currentNumber === '') {
         return;
 
-    } else if (valuesNumbers.includes(key) || key === 'dot' && currentNumber !== '') {
-        currentNumber += values[key];
+    } else if (valuesNumbers.includes(value) || value === values.dot && currentNumber !== '') {
+        currentNumber += value;
         displayWindow.textContent = currentNumber;
     }
        
